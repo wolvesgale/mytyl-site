@@ -1,6 +1,7 @@
 import Experience from '@/components/Experience';
 import ContactActions from '@/components/ContactActions';
 import { site, works } from '@/lib/site';
+import { ArchFrame, Divider, HeroArch, Star8 } from '@/components/Ornaments';
 
 const services = [
   {
@@ -35,7 +36,7 @@ export default function Page() {
 
       <header className="site-header">
         <a href="#top" className="logo" aria-label={`${site.name} トップへ`}>
-          <span className="logo__mark" aria-hidden>✧</span> {site.name}
+          <Star8 size={15} className="logo__mark" /> {site.name}
         </a>
         <nav className="nav" aria-label="メインナビゲーション">
           <a href="#about">About</a>
@@ -48,9 +49,10 @@ export default function Page() {
       <main id="top">
         {/* HERO */}
         <section className="hero" aria-label="イントロダクション">
+          <HeroArch />
           <p className="hero__eyebrow" data-hero-fade>
             <span>3D Creator</span>
-            <span className="dot" aria-hidden />
+            <Star8 size={10} className="dot-star" />
             <span>{site.roleJa}</span>
           </p>
           <h1 className="hero__title" data-hero-title>
@@ -93,7 +95,12 @@ export default function Page() {
         {/* MARQUEE */}
         <div className="marquee" aria-hidden>
           <div className="marquee__track" data-marquee>
-            Crystal · Light · Form · Fairy · Crystal · Light · Form · Fairy ·
+            {['Crystal', 'Light', 'Form', 'Mirage', 'Fairy', 'Crystal', 'Light', 'Form', 'Mirage', 'Fairy'].map((w, i) => (
+              <span key={i} className="marquee__item">
+                {w}
+                <Star8 size={28} className="marquee__star" />
+              </span>
+            ))}
           </div>
         </div>
 
@@ -117,6 +124,8 @@ export default function Page() {
           </div>
         </section>
 
+        <Divider />
+
         {/* WORKS */}
         <section id="works" className="section works">
           <div className="section__label" data-reveal>
@@ -129,6 +138,7 @@ export default function Page() {
             {works.map((w) => (
               <article key={w.no} className={`work ${w.comingSoon ? 'is-soon' : ''}`}>
                 <div className="work__visual" aria-hidden>
+                  <ArchFrame />
                   {w.image ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={w.image} alt="" />
@@ -139,7 +149,7 @@ export default function Page() {
                           <defs>
                             <linearGradient id={`g${w.no}`} x1="0" y1="0" x2="1" y2="1">
                               <stop offset="0%" stopColor="#c9b8ff" />
-                              <stop offset="50%" stopColor="#9ff5e8" />
+                              <stop offset="50%" stopColor="#e9cf96" />
                               <stop offset="100%" stopColor="#ffd0ec" />
                             </linearGradient>
                           </defs>
@@ -197,6 +207,8 @@ export default function Page() {
           </ol>
         </section>
 
+        <Divider />
+
         {/* CONTACT */}
         <section id="contact" className="section contact">
           <div className="section__label" data-reveal>
@@ -220,7 +232,9 @@ export default function Page() {
       </main>
 
       <footer className="site-footer">
-        <span>© {new Date().getFullYear()} {site.name}</span>
+        <span className="site-footer__copy">
+          <Star8 size={12} /> © {new Date().getFullYear()} {site.name}
+        </span>
         <span className="site-footer__en">Crafting light into form.</span>
       </footer>
     </>

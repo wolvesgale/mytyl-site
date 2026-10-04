@@ -147,6 +147,7 @@ export default function Experience() {
         )}
       </div>
       <div className="cursor" data-cursor aria-hidden />
+      <div className="lattice" aria-hidden />
       <div className="grain" aria-hidden />
     </>
   );
